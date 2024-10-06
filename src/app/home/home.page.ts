@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'; 
+import { Component } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -26,15 +26,15 @@ export class HomePage {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     });
 
-    const stamenLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg', {
-      attribution: '&copy; <a href="http://stamen.com">Stamen Design</a> &copy; <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    const esriWorldImageryLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
     });
 
     // Menambahkan base layers ke kontrol
     const baseMaps = {
       "OSM": osmLayer,
       "CartoDB Positron": cartoDBLayer,
-      "Stamen Terrain": stamenLayer,
+      "Esri World Imagery": esriWorldImageryLayer,
     };
 
     // Menambahkan layer control
@@ -44,11 +44,11 @@ export class HomePage {
     osmLayer.addTo(this.map);
 
     // Ganti dengan URL gambar marker yang sesuai
-    const customIconUrl = 'URL_GAMBAR_YANG_DAPAT_DI_AKSES'; // Ganti dengan URL gambar langsung
+    const customIconUrl = 'assets/icon/icon_marker.png'; // Assuming marker.png is in the assets/icon directory
     const customIcon = L.icon({
       iconUrl: customIconUrl,
-      iconSize: [25, 41], // Sesuaikan ukuran
-      iconAnchor: [12, 41]
+      iconSize: [50, 50], // Sesuaikan dengan ukuran asli gambar
+      iconAnchor: [25, 50] // Sesuaikan titik jangkar agar sesuai dengan kebutuhan Anda
     });
 
     // Menambahkan marker di Yogyakarta
